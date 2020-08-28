@@ -222,7 +222,8 @@ export class Multiselect extends React.Component {
 
   onRemoveSelectedItem(item) {
 		let { selectedValues, index = 0, isObject } = this.state;
-		const { onRemove, showCheckbox, displayValue } = this.props;
+    const { onRemove, showCheckbox, displayValue } = this.props;
+    isObject = isObject ? isObject: this.props.isObject;
     if (isObject) {
       index = selectedValues.findIndex(
         i => i[displayValue] === item[displayValue]
@@ -367,7 +368,11 @@ export class Multiselect extends React.Component {
     
     }
     return newValues.map((value, index) => (
-      <span className={`chip ${singleSelect}?"singleChip":"" ${this.isDisablePreSelectedValues(value) ?"disableSelection":""}`} key={index} style={value.style? value.style:style['chips']}>
+      <span 
+      className={`chip ${
+        singleSelect ? 'singleChip' : ''
+      } ${this.isDisablePreSelectedValues(value) ? 'disableSelection':''}`}      
+      key={index} style={value.style? value.style:style['chips']}>
         {!isObject ? (value || '').toString() :displayKey? `${value[displayKey]} - ${value[displayValue]}`: value[displayValue]}
         <i
           className={`icon_cancel closeIconType closeIcon`}
@@ -453,7 +458,7 @@ export class Multiselect extends React.Component {
           />}
         </div>
         <div
-          className={`optionListContainer optionListContainer ${
+          className={`optionListContainer ${
             toggleOptionsList ? 'displayBlock' : 'displayNone'
           }`}
         >

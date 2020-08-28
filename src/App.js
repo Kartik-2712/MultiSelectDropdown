@@ -65,7 +65,8 @@ export class App1 extends Component {
                     showCheckbox={true}
                     displayKey="cat"
                     onSelect={this.state.onSelect} 
-                    onRemove={this.state.onRemove} 
+                    onRemove={this.state.onRemove}
+                    isObject={true}
                     />
 
             </div>
